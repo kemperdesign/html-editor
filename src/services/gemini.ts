@@ -1,6 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY as string | undefined;
+const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
 
 export interface Message {
   role: 'user' | 'model';
@@ -8,6 +9,7 @@ export interface Message {
 }
 
 export async function chatWithAI(messages: Message[], context: string) {
+  if (!ai) return "AI assistant is not configured. Please set VITE_GEMINI_API_KEY.";
   try {
     const systemInstruction = `
       You are Aura, an elite AI Guest Service Agent for high-end vacation rentals.
@@ -41,6 +43,7 @@ export async function chatWithAI(messages: Message[], context: string) {
 }
 
 export async function analyzePerformance(propertyData: any) {
+  if (!ai) return "AI assistant is not configured. Please set VITE_GEMINI_API_KEY.";
   const prompt = `
     Analyze the following property performance data and provide 3 key insights for the owner.
     Data: ${JSON.stringify(propertyData)}
