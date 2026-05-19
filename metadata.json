@@ -1,0 +1,13 @@
+{
+  "name": "Aura Intelligence",
+  "description": "AI-powered vacation rental management and guest concierge platform with property performance analytics and automated support.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "AI-powered guest support",
+    "Property performance analytics",
+    "Quote generation"
+  ]
+}
